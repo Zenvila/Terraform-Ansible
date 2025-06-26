@@ -1,0 +1,19 @@
+---
+- name: Install and start Apache Web Server via raw shell commands
+  hosts: web
+  gather_facts: no
+
+  tasks:
+    - name: Update APT cache
+      raw: apt update
+
+    - name: Install Apache2
+      raw: apt install -y apache2
+
+    - name: Start Apache now
+      raw: service apache2 start
+
+    # (Optional) Check Apache status
+    - name: Verify Apache is running
+      raw: service apache2 status || true
+
